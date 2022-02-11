@@ -7,7 +7,7 @@
                 @if (auth()->check())
                     <div class="card p-4 mb-2">
                         <div class="d-flex justify-content-between">
-                            <div>Balance: <strong>100.00</strong>
+                            <div>Balance: <strong>{{ $balance }}</strong>
                                 <a href="/top"><button class="btn btn-primary">Top-up</button></a>
                             </div>
                             <div>Order:
@@ -49,7 +49,8 @@
                                         </div>
 
                                         <div class="m-1">
-                                            <a href=""><button class="btn btn-success">Buy</button></a>
+                                            <a href="/order/{{ $product->id }}"><button
+                                                    class="btn btn-success">Buy</button></a>
                                         </div>
                                     </div>
                                 </div>

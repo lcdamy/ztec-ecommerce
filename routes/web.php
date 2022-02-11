@@ -23,3 +23,7 @@ Route::get('/dashboard/product/create', 'DashboardController@create');
 
 Route::get('/top', 'TopController@index');
 Route::post('/top/balance', 'TopController@store');
+
+Route::post('/order', 'OrderController@store');
+Route::get('/order/history', 'OrderController@view');
+Route::get('/order/{product}', 'OrderController@index');
