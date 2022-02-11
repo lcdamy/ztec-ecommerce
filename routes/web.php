@@ -20,3 +20,6 @@ Route::get('/', 'HomeController@index');
 Route::get('/dashboard', 'DashboardController@index');
 Route::post('/dashboard/product', 'DashboardController@store');
 Route::get('/dashboard/product/create', 'DashboardController@create');
+
+Route::get('/top', 'TopController@index');
+Route::post('/top/balance', 'TopController@store');

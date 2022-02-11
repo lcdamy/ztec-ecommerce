@@ -14,8 +14,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-        // $products = DB::table('products')->get();
-        $products = Product::join('currencies', 'products.currency_id', '=', 'currencies.id')->get(['currencies.code', 'products.*']);
+        $products = Product::join('currencies', 'products.currency_id', '=', 'currencies.id')->latest()->get(['currencies.code', 'products.*']);
 
         return view('admin.index', compact('products'));
     }
