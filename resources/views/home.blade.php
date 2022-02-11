@@ -11,7 +11,7 @@
                                 <a href="/top"><button class="btn btn-primary">Top-up</button></a>
                             </div>
                             <div>Order:
-                                <a href=""><button class="btn btn-primary">View Order</button></a>
+                                <a href="/order/history"><button class="btn btn-primary">View Order</button></a>
                             </div>
                         </div>
                     </div>

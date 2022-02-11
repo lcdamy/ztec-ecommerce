@@ -57,7 +57,11 @@ class OrderController extends Controller
 
     public function view()
     {
+        $user_id = auth()->user()->id;
+        $orders = Order::join('products', 'orders.product_id', '=', 'products.id')
+            ->where('user_id', $user_id)
+            ->get(['orders.*', 'products.*']);
 
-        return redirect('');
+        return view('client.view', compact('orders'));
     }
 }
