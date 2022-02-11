@@ -13,7 +13,7 @@ class CreateBalanceTable extends Migration
      */
     public function up()
     {
-        Schema::create('balance', function (Blueprint $table) {
+        Schema::create('balances', function (Blueprint $table) {
             $table->id();
             $table->decimal('amount', 10, 2);
             $table->integer('user_id');
