@@ -44,21 +44,6 @@ Now you can RUN it.
 > npm run dev
 ```
 
-### How i developed this Application
-
--   Design my mock-up on paper
--   Design table schema on paper
--   creation of migrations and Model
--   creation of Controller and views
-
-### some of the feature, i would like to star are
-
--   I have one seeder to create currency record at the migration stage
--   I have create Events that are triggered when someone buy a product. It is there to reduce the top-up account and also to reduce the product quantity
--   I have also created audits table to track the addition of the product in table
--   I have created a frontend in js (vuejs) when you are buying a product. for this one i have used axios as it is the one shipped with laravel
--   I have integrated a library called "Intervention" to help me resize my image, so they look great on the website
-
 ### Developers
 
 -   Peter
