@@ -25,17 +25,41 @@ Now you can proceed to project installation.
 > cd ztec-ecommerce
 > npm install
 > composer install
-# make sure to create a mysql database
+# Change the .env on the following variables
+-`APP_NAME` it is what is being displayed as Log
+
+-DB_HOST
+-DB_PORT
+-DB_DATABASE
+-DB_USERNAME
+-DB_PASSWORD
+
+-MAIL_-MAILER=smtp
+-MAIL_HOST=smtp.-mailtrap.io
+-MAIL_PORT=2525
+-MAIL_USERNAME=null
+-MAIL_PASSWORD=null
+-MAIL_ENCRYPTION=null
+-MAIL_FROM_ADDRESS=null
+-MAIL_FROM_NAME="{}"
+
+# make sure that you have a mysql database and running
 > php artisan migrate
+
+```
+
+Now you can RUN it.
+
+```bash
 # Run the server
 > php artisan serve
 # Open a new terminal and run node
 > npm run dev
 ```
 
-### How i proceed to develop this Application
+### How i developed this Application
 
--   to be continue
+-
 
 ### Developers
 
