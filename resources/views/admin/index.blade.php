@@ -21,6 +21,7 @@
                             <th scope="col">#</th>
                             <th scope="col" style="width:100px">Photo</th>
                             <th scope="col">Product</th>
+                            <th scope="col">Quantity</th>
                             <th scope="col">Original-Price</th>
                             <th scope="col">Discout-Price</th>
                         </tr>
@@ -31,15 +32,15 @@
                                 <th scope="row">{{ $product->id }}</th>
                                 <td><img src="/storage/{{ $product->image }}" class="w-50"></td>
                                 <td>{{ $product->name }}</td>
+                                <td>{{ $product->quantity }}</td>
                                 <td>{{ $product->price }} <sub><b>{{ $product->code }}</b></sub></td>
                                 <td>{{ $product->discounted_price }} <sub><b>{{ $product->code }}</b></sub> </td>
                                 <td>{{ $product->description }}</td>
                             </tr>
                         @endforeach
-
-
                     </tbody>
                 </table>
+                {{ $products->links() }}
             </div>
         </div>
     </div>

@@ -10,7 +10,8 @@
                         <div class="col-8 offset-2">
 
                             <div class="d-flex justify-content-between p-4">
-                                <div><img src="/storage/{{ $product->image }}" class="w-100 pr-4"></div>
+                                <div><img src="/storage/{{ $product->image }}" class="w-100 pr-4">
+                                </div>
                                 <div>
                                     <p>{{ $product->description }}</p>
                                     <div>

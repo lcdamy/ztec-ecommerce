@@ -28,7 +28,10 @@ class HomeController extends Controller
             $user_id = auth()->user()->id;
             $balance = 0;
             if ($user_id) {
-                $top = DB::table('balances')->where('user_id', $user_id)->latest('created_at')->first();
+                $top = DB::table('balances')
+                    ->where('user_id', $user_id)
+                    ->latest('created_at')
+                    ->first();
                 if ($top) {
                     $balance = $top->amount;
                 } else {
@@ -39,7 +42,11 @@ class HomeController extends Controller
             }
         }
 
-        $products = Product::join('currencies', 'products.currency_id', '=', 'currencies.id')->latest()->get(['currencies.code', 'products.*']);
+        $products = Product::join('currencies', 'products.currency_id', '=', 'currencies.id')
+            ->latest()
+            ->select(['currencies.code', 'products.*'])
+            ->paginate(6);
+
         return view('home', compact('products', 'balance'));
     }
 }

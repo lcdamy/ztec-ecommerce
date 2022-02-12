@@ -8,7 +8,11 @@ use Illuminate\Support\Facades\DB;
 
 class Order extends Model
 {
-    protected $guarded = [];
+    protected $fillable = [
+        'amount', 'order_qty', 'product_id', 'user_id',
+    ];
+
+    protected $table = 'orders';
 
     protected static function boot()
     {
@@ -22,6 +26,14 @@ class Order extends Model
                 'mode' => 'Purchase product',
                 'user_id' => $user_id,
             ]);
+
+            $product = DB::table('products')->where('id', $order->product_id)->first();
+            if ($product) {
+                DB::table('products')->update([
+                    'quantity' => $product->quantity - 1,
+                ]);
+            }
+
         });
     }
 }

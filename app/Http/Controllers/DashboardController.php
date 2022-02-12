@@ -14,7 +14,10 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $products = Product::join('currencies', 'products.currency_id', '=', 'currencies.id')->latest()->get(['currencies.code', 'products.*']);
+        $products = Product::join('currencies', 'products.currency_id', '=', 'currencies.id')
+            ->latest()
+            ->select(['currencies.code', 'products.*'])
+            ->paginate(10);
 
         return view('admin.index', compact('products'));
     }
@@ -29,7 +32,8 @@ class DashboardController extends Controller
         $data = request()->validate([
             'name' => 'required',
             'price' => 'required',
-            'description' => 'required',
+            'quantity' => 'required',
+            'description' => '',
             'image' => 'required|image',
         ]);
 
@@ -57,7 +61,7 @@ class DashboardController extends Controller
         $store = Product::create([
             'name' => $data['name'],
             'price' => $data['price'],
-            'currency_id' => 1,
+            'quantity' => $data['quantity'],
             'discounted_price' => $discouted_price,
             'description' => $data['description'],
             'image' => $imagepath,

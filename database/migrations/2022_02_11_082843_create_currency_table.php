@@ -18,6 +18,8 @@ class CreateCurrencyTable extends Migration
             $table->string('code');
             $table->timestamps();
         });
+
+        Artisan::call('db:seed');
     }
 
     /**

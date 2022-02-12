@@ -1934,7 +1934,7 @@ __webpack_require__.r(__webpack_exports__);
         }
       }).then(function (respsone) {
         if (respsone.data === "success") {
-          alert("Item Purchased");
+          window.location.href = "/order/history";
         }
       })["catch"](function (error) {
         console.log(error);

@@ -58,6 +58,7 @@
                         </div>
                     @endforeach
                 </div>
+                <div class="row"> {{ $products->links() }}</div>
             </div>
         </div>
     </div>

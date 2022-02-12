@@ -23,7 +23,7 @@ export default {
                 })
                 .then((respsone) => {
                     if (respsone.data === "success") {
-                        alert("Item Purchased");
+                        window.location.href = "/order/history";
                     }
                 })
                 .catch((error) => {

@@ -6,5 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Balance extends Model
 {
-    protected $guarded = [];
+    protected $fillable = [
+        'amount', 'mode', 'user_id',
+    ];
+
+    protected $table = 'balances';
+
 }

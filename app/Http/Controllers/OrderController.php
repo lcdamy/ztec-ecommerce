@@ -19,7 +19,10 @@ class OrderController extends Controller
             $user_id = auth()->user()->id;
             $balance = 0;
             if ($user_id) {
-                $top = DB::table('balances')->where('user_id', $user_id)->latest('created_at')->first();
+                $top = DB::table('balances')
+                    ->where('user_id', $user_id)
+                    ->latest()
+                    ->first();
                 if ($top) {
                     $balance = $top->amount;
                 } else {
@@ -45,6 +48,7 @@ class OrderController extends Controller
         $saving = Order::create([
             'amount' => $data['discounted_price'],
             'product_id' => $data['id'],
+            'order_qty' => 1,
             'user_id' => $user_id,
         ]);
 
@@ -60,7 +64,9 @@ class OrderController extends Controller
         $user_id = auth()->user()->id;
         $orders = Order::join('products', 'orders.product_id', '=', 'products.id')
             ->where('user_id', $user_id)
-            ->get(['orders.*', 'products.*']);
+            ->latest('orders.created_at')
+            ->select(['orders.*', 'products.*'])
+            ->paginate(10);
 
         return view('client.view', compact('orders'));
     }

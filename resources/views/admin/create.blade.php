@@ -41,6 +41,23 @@
                                 </div>
                             </div>
 
+
+                            <div class="form-group row">
+                                <label for="quantity" class="col-md-4 col-form-label text-md-right">Quantity</label>
+
+                                <div class="col-md-6">
+                                    <input id="quantity" type="number"
+                                        class="form-control @error('quantity') is-invalid @enderror" name="quantity"
+                                        value="{{ old('quantity') }}" autocomplete="quantity">
+
+                                    @error('quantity')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
                             <div class="form-group row">
                                 <label for="description" class="col-md-4 col-form-label text-md-right">Product
                                     Details</label>
@@ -49,7 +66,7 @@
                                     <textarea id="description" type="description"
                                         class="form-control @error('description') is-invalid @enderror" name="description"
                                         autocomplete="new-description" cols="30" rows="5">
-                                        </textarea>
+                                                                </textarea>
 
                                     @error('description')
                                         <span class="invalid-feedback" role="alert">
@@ -61,10 +78,14 @@
 
                             <div class="form-group row">
                                 <label for="description-confirm" class="col-md-4 col-form-label text-md-right">Image</label>
-
                                 <div class="col-md-6">
                                     <input id="image" type="file" class="form-control-file" name="image">
                                 </div>
+
+                                @error('image')
+                                    <strong>{{ $message }}</strong>
+                                @enderror
+
                             </div>
 
                             <div class="form-group row mb-0">

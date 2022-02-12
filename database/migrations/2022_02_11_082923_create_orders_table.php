@@ -18,6 +18,7 @@ class CreateOrdersTable extends Migration
             $table->decimal('amount', 10, 2);
             $table->integer('product_id');
             $table->integer('user_id');
+            $table->integer('order_qty');
             $table->timestamps();
         });
     }

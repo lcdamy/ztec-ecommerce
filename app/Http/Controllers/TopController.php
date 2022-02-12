@@ -28,7 +28,10 @@ class TopController extends Controller
 
         $user_id = auth()->user()->id;
 
-        $previousBalance = DB::table('balances')->where('user_id', $user_id)->latest('created_at')->first();
+        $previousBalance = DB::table('balances')
+            ->where('user_id', $user_id)
+            ->latest('created_at')
+            ->first();
 
         Balance::create([
             'amount' => ($previousBalance) ? $data['amount'] + $previousBalance->amount : $data['amount'],

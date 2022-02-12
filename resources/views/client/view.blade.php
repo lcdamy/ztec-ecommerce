@@ -12,8 +12,9 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">#</th>
+                                        <th scope="col" style="width:100px">Photo</th>
                                         <th scope="col">Product</th>
-                                        {{-- <th scope="col">Quantity</th> --}}
+                                        <th scope="col">Quantity</th>
                                         <th scope="col">Price</th>
                                         <th scope="col">Date</th>
                                     </tr>
@@ -22,15 +23,16 @@
                                     @foreach ($orders as $order)
                                         <tr>
                                             <th scope="row">{{ $order->id }}</th>
+                                            <td><img src="/storage/{{ $order->image }}" class="w-50"></td>
                                             <td>{{ $order->name }}</td>
-                                            {{-- <td>{{ $order->quantity }}</td> --}}
+                                            <td>{{ $order->order_qty }}</td>
                                             <td>{{ $order->price }} </td>
                                             <td>{{ $order->created_at }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                             </table>
-
+                            {{ $orders->links() }}
                         </div>
                     </div>
                 </div>

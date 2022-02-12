@@ -18,8 +18,9 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->decimal('price', 10, 2);
             $table->decimal('discounted_price');
-            $table->text('description');
-            $table->integer('currency_id');
+            $table->text('description')->nullable();
+            $table->integer('quantity');
+            $table->integer('currency_id')->default(1);
             $table->string('image');
             $table->timestamps();
         });
