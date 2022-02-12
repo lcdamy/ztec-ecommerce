@@ -17,17 +17,6 @@
                     </div>
                 @endif
                 <div class="row">
-                    @if ($products->isEmpty())
-                        <div class="align-items-center justify-content-center">
-                            <div class="col alert alert-success alert-dismissible fade show" role="alert">
-                                <strong>welcome!</strong> You should start by creating account
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        </div>
-                    @endif
-
                     @foreach ($products as $product)
                         <div class="col-4 mt-2">
                             <div>
