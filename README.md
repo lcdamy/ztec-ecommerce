@@ -2,7 +2,9 @@
 
 ## Description
 
-> This is a project done to test the capability and undestanding of Laravel framework
+> To use this E-commerce APP you must create an admin account, to do that just register using the UI after install the application and change the role to be `admin` other users `clients` will just visit the site, and if the you want to buy the will need to create an account of course.
+
+Enjoy!
 
 ## How to install and run this project
 
@@ -26,23 +28,8 @@ Now you can proceed to project installation.
 > npm install
 > composer install
 # Change the .env on the following variables
--`APP_NAME` it is what is being displayed as Log
-
--DB_HOST
--DB_PORT
--DB_DATABASE
--DB_USERNAME
--DB_PASSWORD
-
--MAIL_-MAILER=smtp
--MAIL_HOST=smtp.-mailtrap.io
--MAIL_PORT=2525
--MAIL_USERNAME=null
--MAIL_PASSWORD=null
--MAIL_ENCRYPTION=null
--MAIL_FROM_ADDRESS=null
--MAIL_FROM_NAME="{}"
-
+-APP_NAME it is what is being displayed as Log
+# For email i have used mailtrap.io
 # make sure that you have a mysql database and running
 > php artisan migrate
 
@@ -59,7 +46,18 @@ Now you can RUN it.
 
 ### How i developed this Application
 
--
+-   Design my mock-up on paper
+-   Design table schema on paper
+-   creation of migrations and Model
+-   creation of Controller and views
+
+### some of the feature, i would like to star are
+
+-   I have one seeder to create currency record at the migration stage
+-   I have create Events that are triggered when someone buy a product. It is there to reduce the top-up account and also to reduce the product quantity
+-   I have also created audits table to track the addition of the product in table
+-   I have created a frontend in js (vuejs) when you are buying a product. for this one i have used axios as it is the one shipped with laravel
+-   I have integrated a library called "Intervention" to help me resize my image, so they look great on the website
 
 ### Developers
 
