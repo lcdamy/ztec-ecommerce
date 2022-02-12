@@ -29,6 +29,7 @@ class DashboardController extends Controller
 
     public function store()
     {
+
         $data = request()->validate([
             'name' => 'required',
             'price' => 'required',
@@ -58,7 +59,7 @@ class DashboardController extends Controller
 
         $discouted_price = $data['price'] - $discout;
 
-        $store = Product::create([
+        $product = Product::create([
             'name' => $data['name'],
             'price' => $data['price'],
             'quantity' => $data['quantity'],
@@ -66,6 +67,10 @@ class DashboardController extends Controller
             'description' => $data['description'],
             'image' => $imagepath,
         ]);
+
+        // if ($audit = Auditor::execute($product)) {
+        //     Auditor::prune($product);
+        // }
 
         return redirect('/dashboard');
     }
