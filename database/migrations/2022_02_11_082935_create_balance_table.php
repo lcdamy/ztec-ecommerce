@@ -17,6 +17,7 @@ class CreateBalanceTable extends Migration
             $table->id();
             $table->decimal('amount', 10, 2);
             $table->integer('user_id');
+            $table->integer('currency_id');
             $table->string('mode');
             $table->timestamps();
         });

@@ -16,7 +16,12 @@ class TopController extends Controller
     public function index()
     {
         $user_id = auth()->user()->id;
-        $tops = DB::table('balances')->where('user_id', $user_id)->get();
+        $tops = Balance::join('currencies', 'balances.currency_id', '=', 'currencies.id')
+            ->select(['currencies.code', 'balances.*'])
+            ->where('user_id', $user_id)
+            ->latest('balances.created_at')
+            ->get();
+
         return view('client.top', compact('tops'));
     }
 
@@ -36,6 +41,7 @@ class TopController extends Controller
         Balance::create([
             'amount' => ($previousBalance) ? $data['amount'] + $previousBalance->amount : $data['amount'],
             'mode' => 'Toping-up',
+            'currency_id' => 1,
             'user_id' => $user_id,
         ]);
 

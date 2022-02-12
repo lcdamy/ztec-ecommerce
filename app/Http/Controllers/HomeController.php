@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Balance;
+use App\Order;
 use App\Product;
-use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -27,19 +28,26 @@ class HomeController extends Controller
         if (auth()->check()) {
             $user_id = auth()->user()->id;
             $balance = 0;
+            $currency = '';
             if ($user_id) {
-                $top = DB::table('balances')
+                $top = Balance::join('currencies', 'balances.currency_id', '=', 'currencies.id')
+                    ->select(['currencies.code', 'balances.*'])
                     ->where('user_id', $user_id)
-                    ->latest('created_at')
+                    ->latest('balances.created_at')
                     ->first();
                 if ($top) {
                     $balance = $top->amount;
+                    $currency = $top->code;
                 } else {
                     $balance = 0;
                 }
             } else {
                 $balance = 0;
             }
+
+            $orders_count = Order::where('user_id', $user_id)
+                ->get()
+                ->count();
         }
 
         $products = Product::join('currencies', 'products.currency_id', '=', 'currencies.id')
@@ -47,6 +55,6 @@ class HomeController extends Controller
             ->select(['currencies.code', 'products.*'])
             ->paginate(6);
 
-        return view('home', compact('products', 'balance'));
+        return view('home', compact('products', 'balance', 'currency', 'orders_count'));
     }
 }

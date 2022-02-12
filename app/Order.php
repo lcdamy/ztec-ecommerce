@@ -24,6 +24,7 @@ class Order extends Model
             Balance::create([
                 'amount' => $previousBalance->amount - $order->amount,
                 'mode' => 'Purchase product',
+                'currency_id' => 1,
                 'user_id' => $user_id,
             ]);
 

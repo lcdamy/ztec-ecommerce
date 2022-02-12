@@ -51,7 +51,7 @@
                                         @foreach ($tops as $top)
                                             <tr>
                                                 <th scope="row">{{ $top->id }}</th>
-                                                <td>{{ $top->amount }}</td>
+                                                <td>{{ $top->amount }} <sub>{{ $top->code }}</sub></td>
                                                 <td>{{ $top->mode }} </td>
                                                 <td>{{ $top->created_at }}</td>
                                             </tr>

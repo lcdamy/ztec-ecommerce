@@ -7,10 +7,10 @@
                 @if (auth()->check())
                     <div class="card p-4 mb-2">
                         <div class="d-flex justify-content-between">
-                            <div>Balance: <strong>{{ $balance }}</strong>
+                            <div>Balance: <strong>{{ $balance }} <sub>{{ $currency }}</sub></strong>
                                 <a href="/top"><button class="btn btn-primary">Top-up</button></a>
                             </div>
-                            <div>Order:
+                            <div>Order: <strong>{{ $orders_count }}</strong>
                                 <a href="/order/history"><button class="btn btn-primary">View Order</button></a>
                             </div>
                         </div>
