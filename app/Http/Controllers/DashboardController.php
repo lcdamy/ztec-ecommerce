@@ -32,8 +32,8 @@ class DashboardController extends Controller
 
         $data = request()->validate([
             'name' => 'required',
-            'price' => 'required',
-            'quantity' => 'required',
+            'price' => 'required|numeric',
+            'quantity' => 'required|numeric|min:1',
             'description' => '',
             'image' => 'required|image',
         ]);
@@ -67,10 +67,6 @@ class DashboardController extends Controller
             'description' => $data['description'],
             'image' => $imagepath,
         ]);
-
-        // if ($audit = Auditor::execute($product)) {
-        //     Auditor::prune($product);
-        // }
 
         return redirect('/dashboard');
     }
