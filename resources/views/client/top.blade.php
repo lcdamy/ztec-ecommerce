@@ -5,7 +5,14 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Top-up Account</div>
+                    <div class="card-header d-flex justify-content-between">
+                        <div>Top-up Account</div>
+                        <div>
+                            <a href="/">
+                                <button class="btn btn-outline-danger"> <i class="bi bi-box-arrow-in-left"></i> Back</button>
+                            </a>
+                        </div>
+                    </div>
 
                     <div class="card-body">
                         <form method="POST" action="/top/balance">
@@ -14,8 +21,9 @@
                                 <label for="amount" class="col-md-4 col-form-label text-md-right">Amount to Top-up</label>
 
                                 <div class="col-md-6">
-                                    <input id="amount" type="text" class="form-control @error('amount') is-invalid @enderror"
-                                        name="amount" value="{{ old('amount') }}" autocomplete="amount" autofocus>
+                                    <input id="amount" type="text"
+                                        class="form-control @error('amount') is-invalid @enderror" name="amount"
+                                        value="{{ old('amount') }}" autocomplete="amount" autofocus>
 
                                     @error('amount')
                                         <span class="invalid-feedback" role="alert">

@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Balance;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
@@ -19,18 +18,17 @@ class Order extends Model
 
         parent::boot();
         static::created(function ($order) {
-            $user_id = auth()->user()->id;
-            $previousBalance = DB::table('balances')->where('user_id', $user_id)->latest('created_at')->first();
-            Balance::create([
+            $previousBalance = (auth()->user()->balances) ? auth()->user()->balances->first() : 0;
+            auth()->user()->balances()->create([
                 'amount' => $previousBalance->amount - $order->amount,
                 'mode' => 'Purchase product',
                 'currency_id' => 1,
-                'user_id' => $user_id,
             ]);
 
             $product = DB::table('products')->where('id', $order->product_id)->first();
+
             if ($product) {
-                DB::table('products')->update([
+                DB::table('products')->where('id', $order->product_id)->update([
                     'quantity' => $product->quantity - 1,
                 ]);
             }

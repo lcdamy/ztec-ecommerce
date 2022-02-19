@@ -1914,6 +1914,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ["product", "balance"],
   mounted: function mounted() {
@@ -37537,7 +37539,7 @@ var render = function () {
     _c(
       "button",
       { staticClass: "btn btn-success", on: { click: _vm.orderProduct } },
-      [_vm._v("Buy")]
+      [_c("i", { staticClass: "bi bi-bag-fill" }), _vm._v(" Buy\n    ")]
     ),
   ])
 }

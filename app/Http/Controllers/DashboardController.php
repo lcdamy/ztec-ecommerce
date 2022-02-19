@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 
 class DashboardController extends Controller
@@ -14,17 +15,35 @@ class DashboardController extends Controller
 
     public function index()
     {
-        $products = Product::join('currencies', 'products.currency_id', '=', 'currencies.id')
-            ->latest()
-            ->select(['currencies.code', 'products.*'])
-            ->paginate(10);
 
-        return view('admin.index', compact('products'));
+        return view('admin.index');
     }
 
     public function create()
     {
         return view('admin.create');
+    }
+
+    public function orders()
+    {
+        $orders = DB::table('orders')
+            ->join('users', 'users.id', '=', 'orders.user_id')
+            ->join('products', 'products.id', '=', 'orders.product_id')
+            ->latest()
+            ->select(['users.email', 'products.image', 'products.name', 'orders.*'])
+            ->paginate(10);
+
+        return view('admin.orders', compact('orders'));
+    }
+
+    public function products()
+    {
+        $products = Product::join('currencies', 'products.currency_id', '=', 'currencies.id')
+            ->latest()
+            ->select(['currencies.code', 'products.*'])
+            ->paginate(10);
+
+        return view('admin.products', compact('products'));
     }
 
     public function store()

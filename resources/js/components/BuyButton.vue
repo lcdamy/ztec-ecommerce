@@ -1,6 +1,8 @@
 <template>
     <div>
-        <button class="btn btn-success" @click="orderProduct">Buy</button>
+        <button class="btn btn-success" @click="orderProduct">
+            <i class="bi bi-bag-fill"></i> Buy
+        </button>
     </div>
 </template>
 

@@ -5,7 +5,14 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card mt-4">
-                    <div class="card-header">Order History</div>
+                    <div class="card-header d-flex justify-content-between">
+                        <div>Order History</div>
+                        <div>
+                            <a href="/">
+                                <button class="btn btn-outline-danger"> <i class="bi bi-box-arrow-in-left"></i> Back</button>
+                            </a>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-8 offset-2">
                             <table class="table">

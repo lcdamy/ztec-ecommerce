@@ -43,8 +43,6 @@ class HomeController extends Controller
             } else {
                 $balance = 0;
             }
-
-            $orders_count = auth()->user()->orders->count();
         }
 
         $products = Product::join('currencies', 'products.currency_id', '=', 'currencies.id')

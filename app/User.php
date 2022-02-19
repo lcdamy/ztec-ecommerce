@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Order;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -45,6 +46,18 @@ class User extends Authenticatable
     public function balances()
     {
         return $this->hasMany(Balance::class)->latest('created_at');
+
+    }
+
+    public function ordersNumberByClient()
+    {
+        return (auth()->user()->orders) ? auth()->user()->orders->count() : 0;
+
+    }
+
+    public function ordersNumber()
+    {
+        return Order::all()->count();
 
     }
 

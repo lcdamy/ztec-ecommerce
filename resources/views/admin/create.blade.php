@@ -5,7 +5,14 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">Add Product</div>
+                    <div class="card-header d-flex justify-content-between">
+                        <div>Add Product</div>
+                        <div>
+                            <a href="/dashboard">
+                                <button class="btn btn-outline-danger"> <i class="bi bi-box-arrow-in-left"></i> Back</button>
+                            </a>
+                        </div>
+                    </div>
 
                     <div class="card-body">
                         <form method="POST" action="/dashboard/product" enctype="multipart/form-data">
@@ -66,7 +73,7 @@
                                     <textarea id="description" type="description"
                                         class="form-control @error('description') is-invalid @enderror" name="description"
                                         autocomplete="new-description" cols="30" rows="5">
-                                                                </textarea>
+                                                                                            </textarea>
 
                                     @error('description')
                                         <span class="invalid-feedback" role="alert">
