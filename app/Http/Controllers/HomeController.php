@@ -24,10 +24,10 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $user_id = auth()->user()->id;
+        $balance = 0;
+        $currency = '';
         if (auth()->check()) {
-            $user_id = auth()->user()->id;
-            $balance = 0;
-            $currency = '';
             if ($user_id) {
                 $top = Balance::join('currencies', 'balances.currency_id', '=', 'currencies.id')
                     ->select(['currencies.code', 'balances.*'])
@@ -50,6 +50,6 @@ class HomeController extends Controller
             ->select(['currencies.code', 'products.*'])
             ->paginate(6);
 
-        return view('home', compact('products', 'balance', 'currency', 'orders_count'));
+        return view('home', compact('products', 'balance', 'currency'));
     }
 }
