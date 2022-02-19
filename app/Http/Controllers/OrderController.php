@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\Product;
+use App\Transformers\OrderTransformer;
+use App\Transformers\ResponseBuilder;
 use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
@@ -53,10 +55,14 @@ class OrderController extends Controller
         ]);
 
         if ($saving) {
-            return "success";
-        } else {
-            return "failed";
+            $data = $this->get__('item', $saving, new OrderTransformer);
+            $response = new ResponseBuilder('success', 'saved', $data, true);
+            return $response->to_json();
         }
+
+        $errorMessage = $this->getErrorMessage('creation_failure', 'order');
+        $response = new ResponseBuilder('failure', 'creation_failure', false, [$errorMessage]);
+        return $response->to_json();
     }
 
     public function view()
