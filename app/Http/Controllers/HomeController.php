@@ -24,10 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user_id = auth()->user()->id;
+
         $balance = 0;
         $currency = '';
         if (auth()->check()) {
+            $user_id = auth()->user()->id;
             if ($user_id) {
                 $top = Balance::join('currencies', 'balances.currency_id', '=', 'currencies.id')
                     ->select(['currencies.code', 'balances.*'])
