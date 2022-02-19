@@ -1932,8 +1932,10 @@ __webpack_require__.r(__webpack_exports__);
         headers: {
           "content-Type": "application/json"
         }
-      }).then(function (respsone) {
-        if (respsone.data === "success") {
+      }).then(function (response) {
+        console.log(response.data);
+
+        if (response.data.status === "success") {
           window.location.href = "/order/history";
         }
       })["catch"](function (error) {

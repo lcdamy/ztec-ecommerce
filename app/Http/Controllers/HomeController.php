@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Balance;
-use App\Order;
 use App\Product;
 
 class HomeController extends Controller
@@ -45,9 +44,7 @@ class HomeController extends Controller
                 $balance = 0;
             }
 
-            $orders_count = Order::where('user_id', $user_id)
-                ->get()
-                ->count();
+            $orders_count = auth()->user()->orders->count();
         }
 
         $products = Product::join('currencies', 'products.currency_id', '=', 'currencies.id')

@@ -12,4 +12,9 @@ class Balance extends Model
 
     protected $table = 'balances';
 
+    public function user()
+    {
+        return $this->belongsTo(Balance::class);
+    }
+
 }

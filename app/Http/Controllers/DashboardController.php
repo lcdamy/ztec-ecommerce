@@ -29,7 +29,6 @@ class DashboardController extends Controller
 
     public function store()
     {
-
         $data = request()->validate([
             'name' => 'required',
             'price' => 'required|numeric',
@@ -59,7 +58,7 @@ class DashboardController extends Controller
 
         $discouted_price = $data['price'] - $discout;
 
-        $product = Product::create([
+        Product::create([
             'name' => $data['name'],
             'price' => $data['price'],
             'quantity' => $data['quantity'],

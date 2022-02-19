@@ -6,7 +6,6 @@ use App\Order;
 use App\Product;
 use App\Transformers\OrderTransformer;
 use App\Transformers\ResponseBuilder;
-use Illuminate\Support\Facades\DB;
 
 class OrderController extends Controller
 {
@@ -18,23 +17,8 @@ class OrderController extends Controller
     public function index(Product $product)
     {
         if (auth()->check()) {
-            $user_id = auth()->user()->id;
-            $balance = 0;
-            if ($user_id) {
-                $top = DB::table('balances')
-                    ->where('user_id', $user_id)
-                    ->latest()
-                    ->first();
-                if ($top) {
-                    $balance = $top->amount;
-                } else {
-                    $balance = 0;
-                }
-            } else {
-                $balance = 0;
-            }
+            $balance = (auth()->user()->balances->first()) ? auth()->user()->balances->first()->amount : 0;
         }
-
         return view('client.order', compact('product', 'balance'));
     }
 

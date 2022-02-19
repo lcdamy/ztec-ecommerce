@@ -21,8 +21,9 @@ export default {
                 .post("/order", data, {
                     headers: { "content-Type": "application/json" },
                 })
-                .then((respsone) => {
-                    if (respsone.data === "success") {
+                .then((response) => {
+                    console.log(response.data);
+                    if (response.data.status === "success") {
                         window.location.href = "/order/history";
                     }
                 })

@@ -42,4 +42,10 @@ class User extends Authenticatable
 
     }
 
+    public function balances()
+    {
+        return $this->hasMany(Balance::class)->latest('created_at');
+
+    }
+
 }

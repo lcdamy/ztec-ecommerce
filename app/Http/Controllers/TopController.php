@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Balance;
-use Illuminate\Support\Facades\DB;
 
 class TopController extends Controller
 {
@@ -28,21 +27,15 @@ class TopController extends Controller
     public function store()
     {
         $data = request()->validate([
-            'amount' => 'required',
+            'amount' => 'required|numeric|min:1',
         ]);
 
-        $user_id = auth()->user()->id;
+        $previousBalance = (auth()->user()->balances->first()) ? auth()->user()->balances->first()->amount : 0;
 
-        $previousBalance = DB::table('balances')
-            ->where('user_id', $user_id)
-            ->latest('created_at')
-            ->first();
-
-        Balance::create([
-            'amount' => ($previousBalance) ? $data['amount'] + $previousBalance->amount : $data['amount'],
+        auth()->user()->balances()->create([
+            'amount' => ($previousBalance) ? $data['amount'] + $previousBalance : $data['amount'],
             'mode' => 'Toping-up',
             'currency_id' => 1,
-            'user_id' => $user_id,
         ]);
 
         return redirect('/top');

@@ -10,7 +10,7 @@ class OrderTransformer extends Fractal\TransformerAbstract
     {
         return [
             'id' => $order->id,
-            'amount' => $order->name,
+            'amount' => $order->amount,
         ];
     }
 }
