@@ -27,7 +27,7 @@
             <div class="container">
                 <div class="d-flex">
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        <img src="/storage/logo/png-transparent-e-commerce-logo-logo-e-commerce-electronic-business-ecommerce-angle-text-service.png"
+                        <img src="/images/png-transparent-e-commerce-logo-logo-e-commerce-electronic-business-ecommerce-angle-text-service.png"
                             class="w-100  mr-1" style="max-width:50px">
                     </a>
                     <a class="navbar-brand pt-2" href="{{ url('/') }}">
