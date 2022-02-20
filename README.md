@@ -30,11 +30,11 @@ Now you can proceed to project installation.
 > php artisan storage:link
 # Change the .env on the following variables
 # For images plz enable storage to be readable, you will find an error like the follow if you add a product without running that command
-> Intervention\Image\Exception\NotReadableException
-Image source not readable
+`Intervention\Image\Exception\NotReadableException
+Image source not readable`
 # For email i have used mailtrap.io, if you see any error like the follow
-> Swift_TransportException
-Cannot send message without a sender address
+`Swift_TransportException
+Cannot send message without a sender address`
 # please create a mailtrap and fill everything
 -MAIL_USERNAME={}
 -MAIL_PASSWORD={}
