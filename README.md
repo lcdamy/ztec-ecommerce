@@ -27,9 +27,18 @@ Now you can proceed to project installation.
 > cd ztec-ecommerce
 > npm install
 > composer install
+> php artisan storage:link
 # Change the .env on the following variables
--APP_NAME it is what is being displayed as Log
-# For email i have used mailtrap.io
+# For images plz enable storage to be readable, you will find an error like the follow if you add a product without running that command
+> Intervention\Image\Exception\NotReadableException
+Image source not readable
+# For email i have used mailtrap.io, if you see any error like the follow
+> Swift_TransportException
+Cannot send message without a sender address
+# please create a mailtrap and fill everything
+-MAIL_USERNAME={}
+-MAIL_PASSWORD={}
+-MAIL_FROM_ADDRESS={}
 # make sure that you have a mysql database and running
 > php artisan migrate
 
