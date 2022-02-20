@@ -18,14 +18,11 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 
 Route::get('/dashboard', 'DashboardController@index');
-Route::post('/dashboard/product', 'DashboardController@store');
-Route::get('/dashboard/orders', 'DashboardController@orders');
-Route::get('/dashboard/products', 'DashboardController@products');
-Route::get('/dashboard/product/create', 'DashboardController@create');
+Route::get('/dashboard/orders', 'DashboardController@vieworders');
+Route::get('/dashboard/products', 'DashboardController@viewproducts');
+Route::get('/dashboard/product/create', 'DashboardController@viewcreate');
 
 Route::get('/top', 'TopController@index');
-Route::post('/top/balance', 'TopController@store');
 
-Route::post('/order', 'OrderController@store');
-Route::get('/order/history', 'OrderController@view');
+Route::get('/order/history', 'OrderController@vieworders');
 Route::get('/order/{product}', 'OrderController@index');

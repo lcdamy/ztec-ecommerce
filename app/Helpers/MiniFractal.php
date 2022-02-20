@@ -1,26 +1,24 @@
-<?php 
+<?php
 namespace App\Helpers;
 
 use League\Fractal\Manager;
 use League\Fractal\Resource\Collection;
 use League\Fractal\Resource\Item;
 
-trait MiniFractal {
+trait MiniFractal
+{
 
-    public function get__($type="item", $model, $transformer)
+    public function get__($type = "item", $model, $transformer)
     {
         $manager = new Manager();
         $resource = null;
 
-        if( $type == "collection" )
-         {
+        if ($type == "collection") {
             $resource = new Collection($model, $transformer);
-         }
-         else if( $type == "item")
-         {
+        } else if ($type == "item") {
             $resource = new Item($model, $transformer);
-         }
-
+        }
+        //dd($manager->createData($resource));
         return $manager->createData($resource)->toArray();
     }
 

@@ -14,7 +14,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        //$this->middleware('auth');
     }
 
     /**
@@ -46,11 +46,16 @@ class HomeController extends Controller
             }
         }
 
+        return view('home', compact('balance', 'currency'));
+    }
+
+    public function products()
+    {
         $products = Product::join('currencies', 'products.currency_id', '=', 'currencies.id')
             ->latest()
             ->select(['currencies.code', 'products.*'])
             ->paginate(6);
 
-        return view('home', compact('products', 'balance', 'currency'));
+        return $products;
     }
 }

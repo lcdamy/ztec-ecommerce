@@ -2,9 +2,8 @@
 
 namespace App;
 
-use App\Mail\AdminProductAddNotification;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
 use OwenIt\Auditing\Contracts\Auditable;
 
 class Product extends Model implements Auditable
@@ -21,7 +20,9 @@ class Product extends Model implements Auditable
     {
         parent::boot();
         static::created(function ($product) {
-            Mail::to(auth()->user()->email)->send(new AdminProductAddNotification());
+            if (Auth::check()) {
+                Mail::to(auth()->user()->email)->send(new AdminProductAddNotification());
+            }
         });
     }
 }

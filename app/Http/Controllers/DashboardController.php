@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Product;
+use App\Transformers\OrderTransformer;
+use App\Transformers\ProductTransformer;
+use App\Transformers\ResponseBuilder;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Facades\Image;
 
@@ -10,30 +13,51 @@ class DashboardController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     public function index()
     {
-
         return view('admin.index');
     }
 
-    public function create()
+    public function vieworders()
+    {
+        return view('admin.orders');
+    }
+
+    public function viewproducts()
+    {
+        return view('admin.products');
+    }
+
+    public function viewcreate()
     {
         return view('admin.create');
     }
 
     public function orders()
     {
-        $orders = DB::table('orders')
-            ->join('users', 'users.id', '=', 'orders.user_id')
-            ->join('products', 'products.id', '=', 'orders.product_id')
-            ->latest()
-            ->select(['users.email', 'products.image', 'products.name', 'orders.*'])
-            ->paginate(10);
+        try {
+            $orders = DB::table('orders')
+                ->join('users', 'users.id', '=', 'orders.user_id')
+                ->join('products', 'products.id', '=', 'orders.product_id')
+                ->latest()
+                ->select(['users.email', 'products.image', 'products.name', 'orders.*'])
+                ->paginate(10);
+            return $orders;
+            if ($orders) {
+                $data = $this->get__('collection', $orders, new OrderTransformer);
+                $response = new ResponseBuilder('success', 'saved', $data, true);
+                return $response->to_json();
+            }
 
-        return view('admin.orders', compact('orders'));
+            $errorMessage = $this->getErrorMessage('creation_failure', 'order');
+            $response = new ResponseBuilder('failure', 'creation_failure', false, [$errorMessage]);
+            return $response->to_json();
+        } catch (Exception $e) {
+            echo 'Caught exception: ', $e->getMessage(), "\n";
+        }
     }
 
     public function products()
@@ -42,8 +66,15 @@ class DashboardController extends Controller
             ->latest()
             ->select(['currencies.code', 'products.*'])
             ->paginate(10);
+        if ($products) {
+            $data = $this->get__('collection', $products, new ProductTransformer);
+            $response = new ResponseBuilder('success', 'saved', $data, true);
+            return $response->to_json();
+        }
 
-        return view('admin.products', compact('products'));
+        $errorMessage = $this->getErrorMessage('creation_failure', 'order');
+        $response = new ResponseBuilder('failure', 'creation_failure', false, [$errorMessage]);
+        return $response->to_json();
     }
 
     public function store()
@@ -77,7 +108,7 @@ class DashboardController extends Controller
 
         $discouted_price = $data['price'] - $discout;
 
-        Product::create([
+        $product = Product::create([
             'name' => $data['name'],
             'price' => $data['price'],
             'quantity' => $data['quantity'],
@@ -86,6 +117,14 @@ class DashboardController extends Controller
             'image' => $imagepath,
         ]);
 
-        return redirect('/dashboard');
+        if ($product) {
+            $data = $this->get__('item', $product, new ProductTransformer);
+            $response = new ResponseBuilder('success', 'saved', $data, true);
+            return $response->to_json();
+        }
+
+        $errorMessage = $this->getErrorMessage('creation_failure', 'order');
+        $response = new ResponseBuilder('failure', 'creation_failure', false, [$errorMessage]);
+        return $response->to_json();
     }
 }

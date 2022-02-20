@@ -20,11 +20,10 @@ export default {
                 return;
             }
             axios
-                .post("/order", data, {
+                .post("/api/order", data, {
                     headers: { "content-Type": "application/json" },
                 })
                 .then((response) => {
-                    console.log(response.data);
                     if (response.data.status === "success") {
                         window.location.href = "/order/history";
                     }

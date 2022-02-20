@@ -43,7 +43,7 @@
                                 </buy-button>
                             </div>
                             <br>
-                            <strong>Description:</strong>
+                            <strong>Descriptions:</strong>
                             <hr>
                             <p>{{ $product->description }}</p>
                         </div>

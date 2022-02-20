@@ -11,7 +11,7 @@ class OrderController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     public function index(Product $product)
@@ -49,7 +49,12 @@ class OrderController extends Controller
         return $response->to_json();
     }
 
-    public function view()
+    public function vieworders()
+    {
+        return view('client.view');
+    }
+
+    public function orders()
     {
         $user_id = auth()->user()->id;
         $orders = Order::join('products', 'orders.product_id', '=', 'products.id')
@@ -57,7 +62,7 @@ class OrderController extends Controller
             ->latest('orders.created_at')
             ->select(['orders.*', 'products.*'])
             ->paginate(10);
+        return $orders;
 
-        return view('client.view', compact('orders'));
     }
 }

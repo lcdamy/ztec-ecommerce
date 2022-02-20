@@ -176,6 +176,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         OwenIt\Auditing\AuditingServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
 
     ],
 

@@ -9,10 +9,15 @@ class TopController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     public function index()
+    {
+        return view('client.top');
+    }
+
+    public function tops()
     {
         $user_id = auth()->user()->id;
         $tops = Balance::join('currencies', 'balances.currency_id', '=', 'currencies.id')
@@ -21,7 +26,7 @@ class TopController extends Controller
             ->latest('balances.created_at')
             ->get();
 
-        return view('client.top', compact('tops'));
+        return $tops;
     }
 
     public function store()
