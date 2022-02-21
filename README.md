@@ -41,6 +41,9 @@ Cannot send message without a sender address`
 -MAIL_FROM_ADDRESS={}
 # make sure that you have a mysql database and running
 > php artisan migrate
+# To generate some default keys, plz run
+> php artisan key:generate
+> php artisan passport:client --personal
 
 ```
 

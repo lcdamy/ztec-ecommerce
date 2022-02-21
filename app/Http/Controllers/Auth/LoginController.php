@@ -30,10 +30,12 @@ class LoginController extends Controller
 
     protected function authenticated(Request $request, $user)
     {
+
+        $token = $user->createToken('Personal Access Token')->accessToken;
         if ($user->role == "admin") {
-            return redirect('/dashboard');
+            return redirect('/dashboard')->with(['token' => $token]);
         } else {
-            return redirect('/');
+            return redirect('/')->with(['token' => $token]);
         }
     }
 

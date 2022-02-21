@@ -102,7 +102,7 @@
 
 <script>
 export default {
-    props: ["currency", "balance"],
+    props: ["currency", "balance", "token"],
     data: function () {
         return {
             products: [],
@@ -110,11 +110,18 @@ export default {
     },
     mounted() {
         this.loadProducts();
+        this.saveToken();
     },
     methods: {
+        saveToken: function () {
+            console.log(this.token);
+            if (!localStorage.getItem("token")) {
+                localStorage.setItem("token", this.token);
+            }
+        },
         loadProducts: function () {
             axios
-                .get("/api/home/products")
+                .get("/api/items")
                 .then((response) => {
                     // if (response.data.status === "success") {
                     this.products = response.data.data;

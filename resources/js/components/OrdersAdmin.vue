@@ -68,8 +68,14 @@ export default {
     },
     methods: {
         loadOrders: function () {
+            const token = localStorage.getItem("token");
+            let config = {
+                headers: {
+                    Authorization: "Bearer " + token,
+                },
+            };
             axios
-                .get("/api/orders")
+                .get("/api/orders", config)
                 .then((response) => {
                     //if (response.data.status === "success") {
                     this.orders = response.data.data;

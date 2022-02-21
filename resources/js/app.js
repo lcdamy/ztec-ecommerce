@@ -33,6 +33,8 @@ Vue.component('home-page', require('./components/HomePage.vue').default);
 Vue.component('orders-client', require('./components/OrdersClient.vue').default);
 Vue.component('top-view', require('./components/TopView.vue').default);
 Vue.component('create-top', require('./components/CreateTop.vue').default);
+Vue.component('admin-page', require('./components/AdminPage.vue').default);
+Vue.component('login-form', require('./components/LoginForm.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

@@ -15,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+// Route::middleware('auth:api')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
 Route::get('/', 'HomeController@index');
 
 Route::get('/dashboard', 'DashboardController@index');

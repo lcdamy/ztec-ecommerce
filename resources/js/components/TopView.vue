@@ -39,11 +39,17 @@ export default {
     },
     methods: {
         loadTops: function () {
+            const token = localStorage.getItem("token");
+            let config = {
+                headers: {
+                    Authorization: "Bearer " + token,
+                },
+            };
             axios
-                .get("/api/tops")
+                .get("/api/tops", config)
                 .then((response) => {
                     //if (response.data.status === "success") {
-                    this.tops = response.data.data;
+                    this.tops = response.data;
                     // }
                 })
                 .catch((error) => {

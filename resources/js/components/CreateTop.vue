@@ -49,13 +49,18 @@ export default {
     mounted() {},
     methods: {
         submit() {
+            const token = localStorage.getItem("token");
+            let config = {
+                headers: {
+                    Authorization: "Bearer " + token,
+                },
+            };
             axios
-                .post("/api/top/balance", this.fields)
+                .post("/api/top/balance", this.fields, config)
                 .then((response) => {
                     this.errors = {};
-                    if (response.data.status === "success") {
-                        window.location.href = "/top";
-                    }
+
+                    window.location.href = "/top";
                 })
                 .catch((error) => {
                     if (error.response.status == 422) {

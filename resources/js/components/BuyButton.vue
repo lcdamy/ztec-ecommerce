@@ -14,13 +14,19 @@ export default {
     },
     methods: {
         orderProduct() {
+            const token = localStorage.getItem("token");
+            let config = {
+                headers: {
+                    Authorization: "Bearer " + token,
+                },
+            };
             let data = JSON.parse(this.product);
             if (parseInt(data.discounted_price) > parseInt(this.balance)) {
                 alert("You need to top-up your wallet first!");
                 return;
             }
             axios
-                .post("/api/order", data, {
+                .post("/api/order", data, config, {
                     headers: { "content-Type": "application/json" },
                 })
                 .then((response) => {

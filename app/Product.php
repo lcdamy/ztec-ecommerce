@@ -2,8 +2,10 @@
 
 namespace App;
 
+use App\Mail\AdminProductAddNotification;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use OwenIt\Auditing\Contracts\Auditable;
 
 class Product extends Model implements Auditable

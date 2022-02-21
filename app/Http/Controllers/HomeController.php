@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Balance;
 use App\Product;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -14,7 +15,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
+        // $this->middleware('auth');
     }
 
     /**
@@ -24,7 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-
         $balance = 0;
         $currency = '';
         if (auth()->check()) {
@@ -49,7 +49,7 @@ class HomeController extends Controller
         return view('home', compact('balance', 'currency'));
     }
 
-    public function products()
+    public function items()
     {
         $products = Product::join('currencies', 'products.currency_id', '=', 'currencies.id')
             ->latest()

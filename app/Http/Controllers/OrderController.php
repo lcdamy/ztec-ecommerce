@@ -11,11 +11,12 @@ class OrderController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth');
+        //  $this->middleware('auth');
     }
 
     public function index(Product $product)
     {
+        $balance = 0;
         if (auth()->check()) {
             $balance = (auth()->user()->balances->first()) ? auth()->user()->balances->first()->amount : 0;
         }

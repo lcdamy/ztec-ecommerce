@@ -74,8 +74,14 @@ export default {
     },
     methods: {
         loadProducts: function () {
+            const token = localStorage.getItem("token");
+            let config = {
+                headers: {
+                    Authorization: "Bearer " + token,
+                },
+            };
             axios
-                .get("/api/products")
+                .get("/api/products", config)
                 .then((response) => {
                     if (response.data.status === "success") {
                         this.products = response.data.data;

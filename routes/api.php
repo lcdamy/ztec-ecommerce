@@ -17,16 +17,19 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 
-Route::group([
-    // 'middleware' => ['auth:api'],
-], function () {
-    Route::get('/home/products', 'HomeController@products');
+Route::post('/users/login', 'UserController@loginUser');
+Route::get('/items', 'HomeController@items');
 
+Route::group([
+    'middleware' => ['auth:api'],
+], function () {
+//admin routes
     Route::post('/product', 'DashboardController@store');
     Route::get('/orders', 'DashboardController@orders');
     Route::get('/products', 'DashboardController@products');
 
-    Route::get('/top', 'TopController@tops');
+//client route
+    Route::get('/tops', 'TopController@tops');
     Route::post('/top/balance', 'TopController@store');
 
     Route::post('/order', 'OrderController@store');

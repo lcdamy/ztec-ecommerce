@@ -180,9 +180,11 @@ export default {
             formData.append("quantity", this.fields.quantity);
             formData.append("description", this.fields.description);
             formData.append("image", this.image);
+            const token = localStorage.getItem("token");
             let config = {
                 headers: {
                     "Content-Type": "multipart/form-data",
+                    Authorization: "Bearer " + token,
                 },
             };
             axios
