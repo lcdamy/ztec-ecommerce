@@ -44,6 +44,7 @@ Cannot send message without a sender address`
 # To generate some default keys, plz run
 > php artisan key:generate
 > php artisan passport:client --personal
+> php artisan passport:keys
 
 ```
 
