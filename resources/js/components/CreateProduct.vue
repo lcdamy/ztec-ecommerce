@@ -139,7 +139,9 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div class="alert alert-success" v-if="loading">
+                                Please wait
+                            </div>
                             <div class="form-group row mb-0">
                                 <div class="col-md-6 offset-md-4">
                                     <button
@@ -164,6 +166,7 @@ export default {
             fields: { name: "", price: "", quantity: "", description: "" },
             image: null,
             errors: {},
+            loading: false,
         };
     },
     mounted() {},
@@ -174,6 +177,7 @@ export default {
             this.image = files[0];
         },
         submit() {
+            this.loading = true;
             let formData = new FormData();
             formData.append("name", this.fields.name);
             formData.append("price", this.fields.price);
@@ -200,6 +204,7 @@ export default {
                         this.errors = error.response.data.errors;
                     }
                     console.log(error);
+                    this.loading = false;
                 });
         },
     },

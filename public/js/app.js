@@ -2179,6 +2179,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2189,7 +2191,8 @@ __webpack_require__.r(__webpack_exports__);
         description: ""
       },
       image: null,
-      errors: {}
+      errors: {},
+      loading: false
     };
   },
   mounted: function mounted() {},
@@ -2202,6 +2205,7 @@ __webpack_require__.r(__webpack_exports__);
     submit: function submit() {
       var _this = this;
 
+      this.loading = true;
       var formData = new FormData();
       formData.append("name", this.fields.name);
       formData.append("price", this.fields.price);
@@ -2227,6 +2231,7 @@ __webpack_require__.r(__webpack_exports__);
         }
 
         console.log(error);
+        _this.loading = false;
       });
     }
   }
@@ -38781,6 +38786,14 @@ var render = function () {
                       : _vm._e(),
                   ]),
                 ]),
+                _vm._v(" "),
+                _vm.loading
+                  ? _c("div", { staticClass: "alert alert-success" }, [
+                      _vm._v(
+                        "\n                            Please wait\n                        "
+                      ),
+                    ])
+                  : _vm._e(),
                 _vm._v(" "),
                 _vm._m(1),
               ]
